@@ -1,0 +1,16 @@
+{
+  "spider": "https://raw.githubusercontent.com/你的仓库/main/js/drpy2.js",
+  "wallpaper": "",
+  "sites": [
+    {
+      "key": "kanju",
+      "name": "看剧AI",
+      "type": 3,
+      "api": "csp_DRPy2_kanju",
+      "ext": "https://raw.githubusercontent.com/你的仓库/main/js/kanju.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    }
+  ]
+}
