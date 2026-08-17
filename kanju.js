@@ -110,9 +110,13 @@ var rule = {
     // kanju.ai API 请求 (自动签名)
     apiGet: async function (path) {
         var headers = this.signHeaders('GET', path);
-        var res = await req(this.host + path, { headers: headers, method: 'GET' });
-        var text = typeof res === 'string' ? res : await res.text();
-        return JSON.parse(text);
+        var res = request(this.host + path, { headers: headers, method: 'GET' });
+        if (res && typeof res.then === 'function') res = await res;
+        if (typeof res === 'object' && res !== null) {
+            if (typeof res.text === 'function') res = await res.text();
+            else res = JSON.stringify(res);
+        }
+        return JSON.parse(res);
     },
 
     // ========== TVBox 接口 ==========
@@ -195,8 +199,9 @@ var rule = {
             var lines = [];
             if (eps.length) {
                 try {
-                    var res2 = await req(this.PLAYER_HOST + '/v1/playback/resolve/' + encodeURIComponent(eps[0].token), { method: 'GET' });
-                    var text2 = typeof res2 === 'string' ? res2 : await res2.text();
+                    var res2 = request(this.PLAYER_HOST + '/v1/playback/resolve/' + encodeURIComponent(eps[0].token), { method: 'GET' });
+                    if (res2 && typeof res2.then === 'function') res2 = await res2;
+                    var text2 = typeof res2 === 'object' && res2 && typeof res2.text === 'function' ? await res2.text() : res2;
                     var rj = JSON.parse(text2);
                     var opts = rj.line_options || [];
                     for (var k = 0; k < opts.length; k++) {
@@ -245,8 +250,9 @@ var rule = {
     playerContent: async function (flag, id, vipFlags) {
         var url = '';
         try {
-            var res = await req(this.PLAYER_HOST + '/v1/playback/resolve/' + encodeURIComponent(id), { method: 'GET' });
-            var text = typeof res === 'string' ? res : await res.text();
+            var res = request(this.PLAYER_HOST + '/v1/playback/resolve/' + encodeURIComponent(id), { method: 'GET' });
+            if (res && typeof res.then === 'function') res = await res;
+            var text = typeof res === 'object' && res && typeof res.text === 'function' ? await res.text() : res;
             var j = JSON.parse(text);
             // 取线路: flag 匹配 provider_name/display_label, 否则取 selected 线路
             var lines = j.line_options || [];
