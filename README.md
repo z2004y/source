@@ -82,3 +82,24 @@
 
 用法：复制 kanju.json 直链 → 影视仓/OK影视 → 设置 → 配置地址 → 粘贴 → 保存。
 若 App 已内置 drpy2，可去掉 `spider` 字段用 kanju接口配置.json。
+
+## CatVodSpider-PC 编译版（Java Spider）
+
+源码：https://github.com/kknifer7/CatVodSpider-PC 模板，新增 `Kanju.java`。
+
+- `spider.jar` - 编译产物（含 csp_Kanju 看剧AI Java Spider）
+- `kanju_jar.json` - 用 spider.jar 加载看剧AI 的配置
+  ```
+  https://raw.githubusercontent.com/z2004y/source/main/kanju_jar.json
+  ```
+- `dc_17源.json` - 17 个解码后的可用源接口列表（单仓格式）
+  ```
+  https://raw.githubusercontent.com/z2004y/source/main/dc_17源.json
+  ```
+
+### 三套方案对比
+| 配置 | 加载方式 | 适用 |
+|---|---|---|
+| kanju.json | drpy2.js + kanju.js | drpy2 系 App（影视仓/OK影视） |
+| kanju_jar.json | spider.jar + csp_Kanju | 标准 TVBox / CatVodSpider-PC |
+| dc_17源.json | 接口列表 | 合集/多接口源 |

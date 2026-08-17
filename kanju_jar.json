@@ -1,0 +1,15 @@
+{
+  "spider": "https://raw.githubusercontent.com/z2004y/source/main/spider.jar",
+  "wallpaper": "https://gimg0.baidu.com/gimg/app=2001&n=0&g=0n&fmt=webp&src=img.baipiaozhe.com/assets/images/34/3488c2c33f4600a17e609b4d82351be26035e1e448cad8e033ce3801be20d38b.webp",
+  "sites": [
+    {
+      "key": "kanju",
+      "name": "看剧AI",
+      "type": 3,
+      "api": "csp_Kanju",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    }
+  ]
+}
