@@ -56,3 +56,29 @@
 - 签名密钥提取自 kanju.ai 站点 JS（HMAC-SHA256，时间戳窗口约数分钟，实时请求无影响）
 - 播放直链来自 player.baipiaozhe.com resolve 接口（无鉴权）
 - 站点若更新签名密钥需同步修改 kanju.js 中的 `SIGN_KEY`
+
+## Spider 版配置（推荐）
+
+### kanju.json（英文名，通用）
+直接链：`https://raw.githubusercontent.com/z2004y/source/main/kanju.json`
+
+该配置带 `spider` 字段，指向官方 drpy2 加载器（gh-proxy 加速）：
+```json
+{
+  "spider": "https://gh-proxy.com/https://raw.githubusercontent.com/hjdhnx/dr_py/main/libs/drpy2.js",
+  "sites": [
+    {
+      "key": "kanju",
+      "name": "看剧AI",
+      "type": 3,
+      "api": "csp_DRPy2_kanju",
+      "ext": "https://raw.githubusercontent.com/z2004y/source/main/kanju.js",
+      "searchable": 1,
+      "quickSearch": 1
+    }
+  ]
+}
+```
+
+用法：复制 kanju.json 直链 → 影视仓/OK影视 → 设置 → 配置地址 → 粘贴 → 保存。
+若 App 已内置 drpy2，可去掉 `spider` 字段用 kanju接口配置.json。
